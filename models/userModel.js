@@ -1,6 +1,6 @@
-const { Schema , Model} = require('mongoose')
+const { Schema , model} = require('mongoose')
 
-const userSchema = new Schema({
+const userSchema = Schema({
     name : {
         type: String,
         required: true
@@ -23,8 +23,8 @@ const userSchema = new Schema({
         enum: ["USER","ADMIN"],
         default: "USER"
     }
-})
+},{timestamps:true})
 
-const UserModel = Model("users", UserSchema)
+const UserModel = model("users", userSchema)
 
 module.exports = UserModel;
