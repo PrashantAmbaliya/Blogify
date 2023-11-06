@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('./partials/head') %>
+  <%- include('./partials/head') %>
     <title>Document</title>
     <style>
-        .centered-form {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh; 
+      .custom-form {
+            width: 75%;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #f3f3f3;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-      </style>
+        .custom-form h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        .form-group textarea {
+            min-height: 150px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container centered-form">
-    <form>
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title">
+  <%- include('./partials/nav') %>
+    <div class="container mt-5" >
+      <form class="custom-form" action="/addblog" method="post" enctype="multipart/form-data" style="background-color: #016ffa !important; color: rgb(0, 0, 0);">
+        <h2 style="color: rgb(0, 0, 0);">ADD BLOG</h2>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control mb-3" id="title" placeholder="Enter title">
         </div>
-        <div class="mb-3">
-          <label for="text" class="form-label">Text</label>
-          <textarea name="text" id="text" cols="30" rows="10"></textarea>
+        <div class="form-group">
+          <label for="text">Text Area</label>
+          <textarea class="form-control mb-3" id="text" name="text" placeholder="Enter text" rows="4"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <div class="form-group">
+          <label for="image">Upload Image</label>
+          <input type="file" class="form-control mb-3" id="image" name="image">
       </div>
+        <button type="submit" class="btn btn-light">Submit</button>
+      </form>
+    </div>
     <%- include('./partials/script') %>
 </body>
+
 </html>

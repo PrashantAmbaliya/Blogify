@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('./partials/head') %>
+  <%- include('./partials/head') %>
     <title>Home</title>
 </head>
+<style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .container-item img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+
+  .container-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .container-item:active {
+    cursor: pointer;
+    border: 2px solid #007bff;
+  }
+</style>
+
 <body>
-    <%- include('./partials/nav') %>
+  <%- include('./partials/nav') %>
+    <div class="container mt-4">
+      <% posts.forEach(post=> { %>
+        <div class="container-item" onclick="window.location.href = '/blog/<%= post._id %>'">
+          <div class="card mb-3" style="width: 700px">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="<%= post.coverIMG %>" class="card-img" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= post.title %>
+                  </h5>
+                  <p class="card-text">
+                    <%= post.text.slice(0,150) %>
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      <%= new Date(post.createdTime).toLocaleDateString('en-GB') %>
+                    </small>
+                    <small class="text-muted">
+                      <b><%= post.autherName %></b>
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
     <%- include('./partials/script') %>
 </body>
+
 </html>
